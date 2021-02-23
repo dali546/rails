@@ -53,6 +53,14 @@ class DateHelperDistanceOfTimeInWordsI18nTests < ActiveSupport::TestCase
       time_ago_in_words(15.seconds.ago, locale: "ru")
     end
   end
+  
+  def test_time_ago_in_words_passes_default
+    {
+      [nil, { scope: :'datetime.distance_in_words_ago', default: "-" }] => ["-"],
+    }.each do |passed, expected|
+      assert_distance_of_time_in_words_translates_key(passed, expected, scope: :'datetime.distance_in_words_ago')
+    end
+  end
 
   def test_distance_of_time_pluralizations
     { [:'less_than_x_seconds', 1]   => "less than 1 second",
