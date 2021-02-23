@@ -103,7 +103,7 @@ module ActionView
         distance_in_minutes = ((to_time - from_time) / 60.0).round
         distance_in_seconds = (to_time - from_time).round
 
-        I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
+        I18n.with_options locale: options[:locale], scope: options[:scope], default: options[:default] do |locale|
           case distance_in_minutes
           when 0..1
             return distance_in_minutes == 0 ?
